@@ -24,6 +24,23 @@ export async function getBalance(email: string): Promise<number> {
   return data ? Number((data as { points: number }).points) : 0;
 }
 
+/**
+ * Whether a loyalty transaction with this exact reason already exists. Used to
+ * make the Shopify webhook idempotent (Shopify retries deliveries, so we must
+ * not award the same order twice). Pass a unique reason like "shopify_order:123".
+ */
+export async function hasTransaction(reason: string): Promise<boolean> {
+  const supabase = getAdminClient();
+  const { data, error } = await supabase
+    .from("loyalty_transactions")
+    .select("id")
+    .eq("reason", reason)
+    .limit(1)
+    .maybeSingle();
+  if (error) throw new Error(`hasTransaction failed: ${error.message}`);
+  return !!data;
+}
+
 export interface LoyaltyStatus {
   email: string;
   points: number;
