@@ -22,8 +22,8 @@ Anyone with a Vercel account + the Supabase keys can finish this in ~10 min.
 ---
 
 ## Option A — Vercel Dashboard (easiest, web UI)
-1. Go to vercel.com → **Add New → Project → Import Git Repository** →
-   `justbeingkids/Binkis` (or fork/transfer to the Binkis account first).
+1. Go to vercel.com → **Add New → Project → Import Git Repository** → the repo that
+   holds this code (currently `0xHackingImpossible/Binkis`).
 2. Framework preset: **Next.js** (auto-detected). No build config needed.
 3. **Environment Variables** → add the ones in the table below → **Deploy**.
 4. Vercel prints the production URL, e.g. `https://binkis-api.vercel.app`. **That is the base URL.**
